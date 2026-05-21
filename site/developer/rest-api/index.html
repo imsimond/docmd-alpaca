@@ -1,0 +1,2052 @@
+<!--
+  ---------------------------------------------------------------
+  docmd : the zero-config documentation engine.
+  @website https://docmd.io
+  [docmd-source] - Please do not remove this header.
+  ---------------------------------------------------------------
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="generator" content="docmd v0.5.x">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>/**
+ * --------------------------------------------------------------------
+ * docmd : the zero-config documentation engine.
+ *
+ * @package     @docmd/core (and ecosystem)
+ * @website     https://docmd.io
+ * @repository  https://github.com/docmd-io/docmd
+ * @license     MIT
+ * @copyright   Copyright (c) 2025-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
+(function () {
+  try {
+    // 1. Determine Theme
+    var localValue = localStorage.getItem('docmd-theme');
+    var configValue = window.DOCMD_DEFAULT_MODE || 'light';
+    var theme = localValue ? localValue : configValue;
+
+    if (theme === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    // 2. Apply to Root
+    document.documentElement.setAttribute('data-theme', theme);
+
+    // 3. Highlight.js Toggle Strategy
+    var lightLink = document.getElementById('hljs-light');
+    var darkLink = document.getElementById('hljs-dark');
+
+    if (lightLink && darkLink) {
+      if (theme === 'dark') {
+        lightLink.disabled = true;
+        darkLink.disabled = false;
+      } else {
+        lightLink.disabled = false;
+        darkLink.disabled = true;
+      }
+    }
+
+    document.documentElement.style.visibility = "visible";
+  } catch (e) {
+    document.documentElement.style.visibility = "visible";
+    console.error('Theme init failed', e);
+  }
+})();</script>
+    <style>
+      html {
+        visibility: hidden;
+      }
+    </style>
+    
+    <script>
+      var root = "../../";
+      if (root && !root.endsWith('/')) root += '/';
+      if (root === '') root = './';
+      window.DOCMD_ROOT = root;
+
+      var siteRoot = "../../";
+      if (siteRoot && !siteRoot.endsWith('/')) siteRoot += '/';
+      if (siteRoot === '') siteRoot = './';
+      window.DOCMD_SITE_ROOT = siteRoot;
+
+      window.DOCMD_APPEARANCE = "system";
+      window.DOCMD_VERSION_ROOT = "/";
+      window.DOCMD_BASE = "/";
+      window.DOCMD_LOCALE = "";
+      window.DOCMD_DEFAULT_LOCALE = "";
+    </script>
+    <title>
+      REST API : Alpaca Issue Tracker
+    </title>
+    <link id="site-favicon" rel="icon" href="../../assets/images/alpaca-face.svg?v=mpfotgsn">
+    <link rel="stylesheet" href="../../assets/css/docmd-main.css?v=mpfotgsn">
+    
+    <link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mpfotgsn">
+    
+    <link rel="stylesheet" href="../../assets/css/docmd-highlight-light.css?v=mpfotgsn" id="hljs-light" >
+    <link rel="stylesheet" href="../../assets/css/docmd-highlight-dark.css?v=mpfotgsn" id="hljs-dark" disabled>
+    
+    
+<meta name="description" content="Documentation for Alpaca Issue Tracker, a WordPress-native issue tracker for bug reports, QA feedback, and project work inside wp-admin.">
+<link rel="canonical" href="https://docs.myproject.com/developer/rest-api/">
+<meta property="og:title" content="REST API - Alpaca Issue Tracker">
+<meta property="og:description" content="Documentation for Alpaca Issue Tracker, a WordPress-native issue tracker for bug reports, QA feedback, and project work inside wp-admin.">
+<meta property="og:url" content="https://docs.myproject.com/developer/rest-api/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="REST API - Alpaca Issue Tracker">
+<meta name="twitter:description" content="Documentation for Alpaca Issue Tracker, a WordPress-native issue tracker for bug reports, QA feedback, and project work inside wp-admin.">
+
+
+
+<link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mpfotgsn" >
+<link rel="stylesheet" href="../../assets/css/docmd-openapi.css?v=mpfotgsn" >
+
+    
+      <link rel="stylesheet" href="../../assets/css/custom.css?v=mpfotgsn">
+    
+    <script>/**
+ * --------------------------------------------------------------------
+ * docmd : the zero-config documentation engine.
+ *
+ * @package     @docmd/core (and ecosystem)
+ * @website     https://docmd.io
+ * @repository  https://github.com/docmd-io/docmd
+ * @license     MIT
+ * @copyright   Copyright (c) 2025-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
+(function () {
+  try {
+    // 1. Determine Theme
+    var localValue = localStorage.getItem('docmd-theme');
+    var configValue = window.DOCMD_DEFAULT_MODE || 'light';
+    var theme = localValue ? localValue : configValue;
+
+    if (theme === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    // 2. Apply to Root
+    document.documentElement.setAttribute('data-theme', theme);
+
+    // 3. Highlight.js Toggle Strategy
+    var lightLink = document.getElementById('hljs-light');
+    var darkLink = document.getElementById('hljs-dark');
+
+    if (lightLink && darkLink) {
+      if (theme === 'dark') {
+        lightLink.disabled = true;
+        darkLink.disabled = false;
+      } else {
+        lightLink.disabled = false;
+        darkLink.disabled = true;
+      }
+    }
+
+    document.documentElement.style.visibility = "visible";
+  } catch (e) {
+    document.documentElement.style.visibility = "visible";
+    console.error('Theme init failed', e);
+  }
+})();</script>
+  </head>
+  <body
+    class="sidebar-collapsible"
+    data-default-collapsed="false"
+    data-copy-code-enabled="true" data-spa-enabled="true" data-source-file="../PLUGINS/alpaca/docs/developer/rest-api.md">
+
+    <a href="#main-content" class="skip-link">skipToContent</a>
+
+    
+    
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          
+            <h1><a href="../../">
+                Alpaca Issue Tracker
+              </a></h1>
+          
+          <span class="mobile-view sidebar-menu-button float-right">
+            
+<svg class="lucide-icon icon-menu " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-menu"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M4 5h16" />
+  <path d="M4 12h16" />
+  <path d="M4 19h16" />
+</svg>
+
+          </span>
+        </div>
+        <div class="sidebar-top-group">
+          
+          
+          
+          
+        </div>
+        
+
+<nav class="sidebar-nav" aria-label="mainNavigation">
+  <ul>
+    
+      <li class="" >
+      
+        <a href="../../" class=" "
+          >
+           
+<svg class="lucide-icon icon-home " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-house"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+  <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Home
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="collapsible nav-group"  aria-expanded="false" >
+      
+        <span class="nav-label nav-group">
+           
+<svg class="lucide-icon icon-user " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-user"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+  <circle cx="12" cy="7" r="4" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            User Guides
+          </span>
+          
+            <span class="collapse-icon-wrapper">
+<svg class="lucide-icon icon-chevron-right collapse-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg>
+</span>
+          
+        </span>
+        
+
+        
+          <ul class="submenu">
+            
+      <li class="" >
+      
+        <a href="../../user/getting-started/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Getting Started
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../user/project-board/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Project Board
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../user/contextual-capture/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Contextual Capture
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../user/comments-and-activity/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Comments And Activity
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../user/notifications/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Notifications
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../user/privacy-and-data/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Privacy And Data
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+          </ul>
+        
+      </li>
+    
+      <li class="collapsible nav-group"  aria-expanded="false" >
+      
+        <span class="nav-label nav-group">
+           
+<svg class="lucide-icon icon-cog " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-cog"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M11 10.27 7 3.34" />
+  <path d="m11 13.73-4 6.93" />
+  <path d="M12 22v-2" />
+  <path d="M12 2v2" />
+  <path d="M14 12h8" />
+  <path d="m17 20.66-1-1.73" />
+  <path d="m17 3.34-1 1.73" />
+  <path d="M2 12h2" />
+  <path d="m20.66 17-1.73-1" />
+  <path d="m20.66 7-1.73 1" />
+  <path d="m3.34 17 1.73-1" />
+  <path d="m3.34 7 1.73 1" />
+  <circle cx="12" cy="12" r="2" />
+  <circle cx="12" cy="12" r="8" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Admin Guides
+          </span>
+          
+            <span class="collapse-icon-wrapper">
+<svg class="lucide-icon icon-chevron-right collapse-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg>
+</span>
+          
+        </span>
+        
+
+        
+          <ul class="submenu">
+            
+      <li class="" >
+      
+        <a href="../../admin/configuration/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Configuration
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../admin/email-templates/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Email Templates
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../admin/roles-and-permissions/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Roles And Permissions
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+          </ul>
+        
+      </li>
+    
+      <li class="active-parent collapsible expanded nav-group"  aria-expanded="true" >
+      
+        <span class="nav-label nav-group">
+           
+<svg class="lucide-icon icon-code " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-code"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m16 18 6-6-6-6" />
+  <path d="m8 6-6 6 6 6" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Developer Guides
+          </span>
+          
+            <span class="collapse-icon-wrapper">
+<svg class="lucide-icon icon-chevron-right collapse-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg>
+</span>
+          
+        </span>
+        
+
+        
+          <ul class="submenu">
+            
+      <li class="" >
+      
+        <a href="../../developer/architecture/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Architecture
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../developer/data-model/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Data Model
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../developer/development/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Development
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../developer/icon-system/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Icon System
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="active" >
+      
+        <a href="../../developer/rest-api/" class="active "
+          >
+          
+          <span class="nav-item-title">
+            REST API
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../developer/settings-options/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Settings And Options
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+          </ul>
+        
+      </li>
+    
+      <li class="collapsible nav-group"  aria-expanded="false" >
+      
+        <span class="nav-label nav-group">
+           
+<svg class="lucide-icon icon-book " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-book"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Hook And Filter Reference
+          </span>
+          
+            <span class="collapse-icon-wrapper">
+<svg class="lucide-icon icon-chevron-right collapse-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg>
+</span>
+          
+        </span>
+        
+
+        
+          <ul class="submenu">
+            
+      <li class="" >
+      
+        <a href="../../reference/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Overview
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../reference/core-and-admin/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Core And Admin Hooks
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../reference/daily-digest/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Daily Digest Hooks
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../reference/javascript-actions/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            JavaScript Actions
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../reference/javascript-filters/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            JavaScript Filters And Browser API
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../reference/notifications/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Notification Hooks
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../reference/private-comments/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            Private Comment Hooks
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../../reference/rest-api/" class=" "
+          >
+          
+          <span class="nav-item-title">
+            REST API Hooks
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+          </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+        <div class="sidebar-bottom-group mt-auto">
+          
+          
+          
+          
+        </div>
+      </aside>
+      
+      <div class="main-content-wrapper">
+        
+        
+          <header class="page-header">
+            <div class="header-left">
+              
+                <button id="sidebar-toggle-button" class="sidebar-toggle-button"
+                  aria-label="toggleSidebar">
+                  
+<svg class="lucide-icon icon-chevron-left " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-left"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m15 18-6-6 6-6" />
+</svg>
+
+                </button>
+              
+              <div class="header-titles-wrapper">
+                <span class="header-title">
+                  REST API
+                </span>
+              </div>
+            </div>
+            <div class="header-right">
+              
+                
+
+
+<div class="docmd-options-menu">
+    
+    <button class="docmd-search-trigger" aria-label="search">
+        
+<svg class="lucide-icon icon-search " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-search"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" />
+</svg>
+
+        <span class="search-label">search</span>
+        <span class="search-keys"><kbd class="docmd-kbd">⌘</kbd><kbd class="docmd-kbd">K</kbd></span>
+    </button>
+    
+
+    
+
+    
+
+    
+    <button class="theme-toggle-button" aria-label="toggleTheme">
+        
+<svg class="lucide-icon icon-sun icon-sun" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-sun"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" />
+</svg>
+ 
+<svg class="lucide-icon icon-moon icon-moon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-moon"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+</svg>
+
+    </button>
+    
+
+    
+</div>
+
+              
+            </div>
+          </header>
+        
+        <div class="content-theme-cover">
+          <main class="content-area" id="main-content">
+            <div class="content-layout">
+              <div class="main-content">
+                
+                  <nav aria-label="breadcrumb" class="docmd-breadcrumbs">
+                    <ol>
+                      
+                      
+                        <li class="breadcrumb-item " >
+                          
+                            <span>Developer Guides</span>
+                          
+                          
+                            <span class="breadcrumb-separator">
+<svg class="lucide-icon icon-chevron-right " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg>
+</span>
+                          
+                        </li>
+                      
+                        <li class="breadcrumb-item active" aria-current=&quot;page&quot;>
+                          
+                            <span>REST API</span>
+                          
+                          
+                        </li>
+                      
+                    </ol>
+                  </nav>
+                
+                
+                <h1 id="rest-api">REST API</h1>
+<p>Alpaca Issue Tracker registers custom REST routes under the <code>alpaca/v1</code> namespace and also filters selected WordPress core comment routes for issue comments.</p>
+<p>Most write routes require a valid WordPress REST nonce. Same-origin JavaScript requests normally send the nonce with the <code>X-WP-Nonce</code> header through <code>wp.apiFetch</code>. Some endpoints also accept a <code>nonce</code> request parameter where the code explicitly supports it.</p>
+<h2 id="rest-api-method-names" class="docmd-heading"><a href="#rest-api-method-names" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Method Names</h2>
+<p>This reference uses plain HTTP method names. In code, some endpoints use WordPress REST constants:</p>
+<ul>
+<li><code>WP_REST_Server::READABLE</code>: <code>GET</code>.</li>
+<li><code>WP_REST_Server::CREATABLE</code>: <code>POST</code>.</li>
+<li><code>WP_REST_Server::EDITABLE</code>: <code>POST</code>, <code>PUT</code>, or <code>PATCH</code>.</li>
+<li><code>WP_REST_Server::DELETABLE</code>: <code>DELETE</code>.</li>
+</ul>
+<h2 id="rest-api-permissions" class="docmd-heading"><a href="#rest-api-permissions" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Permissions</h2>
+<p>Permissions are checked through <code>Alpaca\Helpers::user_can()</code> and <code>Alpaca\Helpers::validate_rest_nonce_permission()</code>.</p>
+<p>Common permission actions:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Permission action</th>
+<th>Default capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>view_board</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>get_issue</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>comment_count</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>list_users</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>presence</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>watchlist</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>get_statuses</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>notification_preferences</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>notification_inbox</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>create_issue</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>update_issue</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>update_board</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>watchlist_toggle</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>register_comment_meta</code></td>
+<td><code>edit_posts</code></td>
+</tr>
+<tr>
+<td><code>delete_issue</code></td>
+<td><code>manage_options</code></td>
+</tr>
+<tr>
+<td><code>manage_options</code></td>
+<td><code>manage_options</code></td>
+</tr>
+<tr>
+<td><code>options_update</code></td>
+<td><code>manage_options</code></td>
+</tr>
+<tr>
+<td><code>notification_template_manage</code></td>
+<td><code>manage_options</code></td>
+</tr>
+<tr>
+<td><code>restore_statuses</code></td>
+<td><code>manage_options</code></td>
+</tr>
+<tr>
+<td><code>update_status</code></td>
+<td><code>manage_options</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>Custom permission behavior should use the <code>alpaca_user_can</code> filter documented in <a href="../../reference/core-and-admin/">…/reference/core-and-admin.md</a>.</p>
+<h2 id="rest-api-issue-endpoints" class="docmd-heading"><a href="#rest-api-issue-endpoints" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Issue Endpoints</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/submit</code></td>
+<td><code>create_issue</code> + nonce</td>
+<td>Create a new issue.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/update/{id}</code></td>
+<td><code>update_issue</code> + nonce</td>
+<td>Update an issue title, content, parent, taxonomies, or meta.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/subissues</code></td>
+<td><code>create_issue</code> + nonce</td>
+<td>Create a subissue under a parent issue.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/get/{id}</code></td>
+<td><code>comment_count</code></td>
+<td>Get full issue details.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/comment-count/{id}</code></td>
+<td><code>list_users</code></td>
+<td>Get issue comment counts and last activity.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/deleted-items</code></td>
+<td><code>comment_count</code></td>
+<td>List trashed issues for the Deleted Items screen.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/restore/{id}</code></td>
+<td><code>manage_options</code> + nonce</td>
+<td>Restore a trashed issue.</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/wp-json/alpaca/v1/delete/{id}</code></td>
+<td><code>delete_issue</code> + nonce</td>
+<td>Trash an issue.</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="rest-api-issue-endpoints-create-issue" class="docmd-heading"><a href="#rest-api-issue-endpoints-create-issue" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Create Issue</h3>
+<p><code>POST /wp-json/alpaca/v1/submit</code></p>
+<p>Expected JSON payload includes:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;userinput&quot;</span><span class="hljs-punctuation">:</span> {
+    <span class="hljs-string">&quot;feedback&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Issue title or report text&quot;</span>,
+    <span class="hljs-string">&quot;includeContext&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span>,
+    <span class="hljs-string">&quot;isHighPriority&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span>
+  }
+}
+</code></pre>
+<p>When <code>includeContext</code> is true, the endpoint can store contextual capture data from <code>client</code>, <code>server</code>, <code>wp</code>, <code>headers</code>, and <code>errors</code> payload sections.</p>
+<h3 id="rest-api-issue-endpoints-update-issue" class="docmd-heading"><a href="#rest-api-issue-endpoints-update-issue" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Update Issue</h3>
+<p><code>POST /wp-json/alpaca/v1/update/{id}</code></p>
+<p>Supported JSON fields include:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Updated title&quot;</span>,
+  <span class="hljs-string">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Updated issue body&quot;</span>,
+  <span class="hljs-string">&quot;post_parent&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>,
+  <span class="hljs-string">&quot;taxonomies&quot;</span><span class="hljs-punctuation">:</span> {
+    <span class="hljs-string">&quot;alpaca_status&quot;</span><span class="hljs-punctuation">:</span> [<span class="hljs-number">51</span>],
+    <span class="hljs-string">&quot;alpaca_label&quot;</span><span class="hljs-punctuation">:</span> [<span class="hljs-number">88</span>],
+    <span class="hljs-string">&quot;alpaca_assignee&quot;</span><span class="hljs-punctuation">:</span> [<span class="hljs-string">&quot;user-slug&quot;</span>]
+  },
+  <span class="hljs-string">&quot;meta&quot;</span><span class="hljs-punctuation">:</span> {
+    <span class="hljs-string">&quot;high_priority&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span>
+  }
+}
+</code></pre>
+<p><code>alpaca_assignee</code> expects WordPress user slugs and resolves them to assignee taxonomy terms.</p>
+<h3 id="rest-api-issue-endpoints-create-subissue" class="docmd-heading"><a href="#rest-api-issue-endpoints-create-subissue" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Create Subissue</h3>
+<p><code>POST /wp-json/alpaca/v1/subissues</code></p>
+<p>Expected JSON payload:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;parent_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>,
+  <span class="hljs-string">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Checklist item title&quot;</span>
+}
+</code></pre>
+<h3 id="rest-api-issue-endpoints-deleted-items" class="docmd-heading"><a href="#rest-api-issue-endpoints-deleted-items" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Deleted Items</h3>
+<p><code>GET /wp-json/alpaca/v1/deleted-items</code></p>
+<p>Supported query parameters:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search</code></td>
+<td>Optional search string.</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>Page number. Defaults to <code>1</code>.</td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td>Items per page. Defaults to <code>20</code>.</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="rest-api-board-and-status-endpoints" class="docmd-heading"><a href="#rest-api-board-and-status-endpoints" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Board And Status Endpoints</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/board</code></td>
+<td><code>get_statuses</code></td>
+<td>Get board columns and issues.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/board</code></td>
+<td><code>update_board</code> + nonce</td>
+<td>Save issue ordering inside board columns.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/statuses</code></td>
+<td><code>get_statuses</code></td>
+<td>Get status terms.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/status/{id}</code></td>
+<td><code>update_status</code> + nonce</td>
+<td>Update a status name, slug, or score.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/statuses/restore-defaults</code></td>
+<td><code>restore_statuses</code> + nonce</td>
+<td>Restore default status terms.</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="rest-api-board-and-status-endpoints-update-board" class="docmd-heading"><a href="#rest-api-board-and-status-endpoints-update-board" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Update Board</h3>
+<p><code>POST /wp-json/alpaca/v1/board</code></p>
+<p>Expected JSON payload is an array of columns:</p>
+<pre class="hljs"><code>[
+  {
+    <span class="hljs-string">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">51</span>,
+    <span class="hljs-string">&quot;issues&quot;</span><span class="hljs-punctuation">:</span> [<span class="hljs-number">123</span>, <span class="hljs-number">124</span>, <span class="hljs-number">125</span>]
+  }
+]
+</code></pre>
+<h3 id="rest-api-board-and-status-endpoints-update-status" class="docmd-heading"><a href="#rest-api-board-and-status-endpoints-update-status" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Update Status</h3>
+<p><code>POST /wp-json/alpaca/v1/status/{id}</code></p>
+<p>Supported JSON fields:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;In Review&quot;</span>,
+  <span class="hljs-string">&quot;term_score&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">30</span>
+}
+</code></pre>
+<p><code>term_score</code> must be numeric and inside the allowed status score range.</p>
+<h2 id="rest-api-users-labels-and-watchlist-endpoints" class="docmd-heading"><a href="#rest-api-users-labels-and-watchlist-endpoints" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Users, Labels, And Watchlist Endpoints</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/users</code></td>
+<td><code>watchlist</code></td>
+<td>Get assignable users.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/labels</code></td>
+<td><code>watchlist</code></td>
+<td>Get labels.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/labels</code></td>
+<td><code>manage_options</code> + nonce</td>
+<td>Create a label.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/label/{id}</code></td>
+<td><code>manage_options</code> + nonce</td>
+<td>Update a label.</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/wp-json/alpaca/v1/label/{id}</code></td>
+<td><code>manage_options</code> + nonce</td>
+<td>Delete a label.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/watchlist</code></td>
+<td><code>watchlist</code></td>
+<td>Get the current user’s watched issue IDs.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/watchlist</code></td>
+<td><code>watchlist_toggle</code> + nonce</td>
+<td>Toggle or replace the current user’s watchlist.</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="rest-api-users-labels-and-watchlist-endpoints-create-or-update-label" class="docmd-heading"><a href="#rest-api-users-labels-and-watchlist-endpoints-create-or-update-label" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Create Or Update Label</h3>
+<p>Supported JSON fields:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Design&quot;</span>,
+  <span class="hljs-string">&quot;color&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;#172b4d&quot;</span>
+}
+</code></pre>
+<h3 id="rest-api-users-labels-and-watchlist-endpoints-update-watchlist" class="docmd-heading"><a href="#rest-api-users-labels-and-watchlist-endpoints-update-watchlist" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Update Watchlist</h3>
+<p>Preferred JSON payload for replacing the user’s watchlist:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;watchlist&quot;</span><span class="hljs-punctuation">:</span> [<span class="hljs-number">123</span>, <span class="hljs-number">124</span>]
+}
+</code></pre>
+<p>Backward-compatible JSON payload for toggling one issue:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;issue_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+}
+</code></pre>
+<h2 id="rest-api-notification-endpoints" class="docmd-heading"><a href="#rest-api-notification-endpoints" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Notification Endpoints</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/notification-preferences</code></td>
+<td><code>notification_preferences</code></td>
+<td>Get current user’s notification preferences.</td>
+</tr>
+<tr>
+<td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td>
+<td><code>/wp-json/alpaca/v1/notification-preferences</code></td>
+<td><code>notification_preferences</code> + nonce</td>
+<td>Update current user’s notification preferences.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/notification-inbox</code></td>
+<td><code>notification_inbox</code></td>
+<td>Get inbox items.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/notification-inbox/count</code></td>
+<td><code>notification_inbox</code></td>
+<td>Get unread inbox count.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-inbox/mark-read</code></td>
+<td><code>notification_inbox</code> + nonce</td>
+<td>Mark inbox items as read.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-inbox/mark-unread</code></td>
+<td><code>notification_inbox</code> + nonce</td>
+<td>Mark inbox items as unread.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-inbox/mark-all-read</code></td>
+<td><code>notification_inbox</code> + nonce</td>
+<td>Mark all inbox items as read.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/notification-template</code></td>
+<td><code>notification_template_manage</code></td>
+<td>Get the email notification template.</td>
+</tr>
+<tr>
+<td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td>
+<td><code>/wp-json/alpaca/v1/notification-template</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Update the email notification template.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-template/preview</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Preview the email notification template.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-template/test</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Send a test email notification.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-template/reset</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Reset the email notification template.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/notification-digest-template</code></td>
+<td><code>notification_template_manage</code></td>
+<td>Get the daily digest template.</td>
+</tr>
+<tr>
+<td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td>
+<td><code>/wp-json/alpaca/v1/notification-digest-template</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Update the daily digest template.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-digest-template/preview</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Preview the daily digest template.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-digest-template/test</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Send a test daily digest.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/notification-digest-template/reset</code></td>
+<td><code>notification_template_manage</code> + nonce</td>
+<td>Reset the daily digest template.</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="rest-api-notification-endpoints-notification-inbox-query-parameters" class="docmd-heading"><a href="#rest-api-notification-endpoints-notification-inbox-query-parameters" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Notification Inbox Query Parameters</h3>
+<p><code>GET /wp-json/alpaca/v1/notification-inbox</code></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>page</code></td>
+<td>Page number. Defaults to <code>1</code>.</td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td>Items per page. Defaults to <code>20</code> and is capped at <code>50</code>.</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>unread</code> or <code>all</code>. Defaults to <code>unread</code>.</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="rest-api-notification-endpoints-mark-inbox-items" class="docmd-heading"><a href="#rest-api-notification-endpoints-mark-inbox-items" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Mark Inbox Items</h3>
+<p><code>POST /wp-json/alpaca/v1/notification-inbox/mark-read</code></p>
+<p><code>POST /wp-json/alpaca/v1/notification-inbox/mark-unread</code></p>
+<p>Expected JSON payload:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;item_ids&quot;</span><span class="hljs-punctuation">:</span> [<span class="hljs-number">12</span>, <span class="hljs-number">13</span>]
+}
+</code></pre>
+<h3 id="rest-api-notification-endpoints-notification-preferences" class="docmd-heading"><a href="#rest-api-notification-endpoints-notification-preferences" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Notification Preferences</h3>
+<p>Update payloads use a <code>preferences</code> object:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;preferences&quot;</span><span class="hljs-punctuation">:</span> {
+    <span class="hljs-string">&quot;instant&quot;</span><span class="hljs-punctuation">:</span> {},
+    <span class="hljs-string">&quot;digest&quot;</span><span class="hljs-punctuation">:</span> {}
+  }
+}
+</code></pre>
+<h3 id="rest-api-notification-endpoints-notification-templates" class="docmd-heading"><a href="#rest-api-notification-endpoints-notification-templates" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Notification Templates</h3>
+<p>Template update, preview, and test endpoints accept:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-string">&quot;subject&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;{{issue_title}} updated&quot;</span>,
+  <span class="hljs-string">&quot;body&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;!-- wp:paragraph --&gt;&lt;p&gt;{{comment}}&lt;/p&gt;&lt;!-- /wp:paragraph --&gt;&quot;</span>
+}
+</code></pre>
+<h2 id="rest-api-attachment-endpoints" class="docmd-heading"><a href="#rest-api-attachment-endpoints" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Attachment Endpoints</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/comment-attachments</code></td>
+<td><code>register_comment_meta</code> + nonce</td>
+<td>Upload a comment attachment for an issue.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/comment-attachments/delete</code></td>
+<td><code>register_comment_meta</code> + nonce</td>
+<td>Delete a comment attachment.</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="rest-api-attachment-endpoints-upload-attachment" class="docmd-heading"><a href="#rest-api-attachment-endpoints-upload-attachment" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Upload Attachment</h3>
+<p><code>POST /wp-json/alpaca/v1/comment-attachments</code></p>
+<p>Expected multipart form data:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issue_id</code></td>
+<td>Target issue ID.</td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td>Uploaded file.</td>
+</tr>
+</tbody>
+</table>
+</div><p>The upload uses WordPress allowed MIME types and stores the file in an issue-specific upload directory.</p>
+<h3 id="rest-api-attachment-endpoints-delete-attachment" class="docmd-heading"><a href="#rest-api-attachment-endpoints-delete-attachment" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Delete Attachment</h3>
+<p><code>POST /wp-json/alpaca/v1/comment-attachments/delete</code></p>
+<p>Expected JSON or form fields:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issue_id</code></td>
+<td>Target issue ID.</td>
+</tr>
+<tr>
+<td><code>comment_id</code></td>
+<td>Optional comment ID used for stricter validation.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>Attachment URL to delete.</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="rest-api-presence-capture-and-proxy-endpoints" class="docmd-heading"><a href="#rest-api-presence-capture-and-proxy-endpoints" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Presence, Capture, And Proxy Endpoints</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/alpaca/v1/presence</code></td>
+<td><code>presence</code> + nonce</td>
+<td>Update current user’s board presence and return other present users.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/report-context</code></td>
+<td><code>create_issue</code> + nonce</td>
+<td>Return contextual capture data for the current request.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/alpaca/v1/proxy</code></td>
+<td><code>view_board</code> + nonce or valid <code>proxy_token</code></td>
+<td>Proxy an image for screenshot capture.</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="rest-api-presence-capture-and-proxy-endpoints-image-proxy" class="docmd-heading"><a href="#rest-api-presence-capture-and-proxy-endpoints-image-proxy" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Image Proxy</h3>
+<p><code>GET /wp-json/alpaca/v1/proxy</code></p>
+<p>Supported query parameters:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td>External image URL to proxy. Required.</td>
+</tr>
+<tr>
+<td><code>nonce</code></td>
+<td>Same-origin WordPress REST nonce.</td>
+</tr>
+<tr>
+<td><code>proxy_token</code></td>
+<td>Signed token used when cookies are omitted.</td>
+</tr>
+</tbody>
+</table>
+</div><p>The proxy rejects unsafe private or reserved IP targets.</p>
+<h2 id="rest-api-wordpress-core-comment-routes" class="docmd-heading"><a href="#rest-api-wordpress-core-comment-routes" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>WordPress Core Comment Routes</h2>
+<p>Issue comments use WordPress comments with the <code>issuecomment</code> type, so the plugin extends selected WordPress core comment routes instead of registering separate comment CRUD routes.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/wp/v2/comments</code></td>
+<td>List issue comments when explicitly requested.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/wp-json/wp/v2/comments</code></td>
+<td>Create issue comments for Alpaca issues.</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/wp-json/wp/v2/comments/{id}</code></td>
+<td>Read one issue comment when explicitly requested.</td>
+</tr>
+</tbody>
+</table>
+</div><p>For hidden issue comments, REST reads must explicitly target the issue comment type and opt into visibility:</p>
+<pre class="hljs"><code>comment_type<span class="hljs-punctuation">=</span>issuecomment
+alpaca_include_hidden_comments<span class="hljs-punctuation">=</span><span class="hljs-number">1</span>
+context<span class="hljs-punctuation">=</span>edit
+</code></pre>
+<p>Collection requests that include a <code>post</code> parameter must target <code>alpaca_issue</code> posts. Comment creation also requires an <code>alpaca_issue</code> post target.</p>
+<h2 id="rest-api-rest-extension-hooks" class="docmd-heading"><a href="#rest-api-rest-extension-hooks" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>REST Extension Hooks</h2>
+<h3 id="rest-api-rest-extension-hooks-response-object-filter" class="docmd-heading"><a href="#rest-api-rest-extension-hooks-response-object-filter" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Response Object Filter</h3>
+<p><code>alpaca_rest_response_object</code></p>
+<p>Filter the final REST response object.</p>
+<p>Example: add a custom header to successful Alpaca Issue Tracker REST responses.</p>
+<pre class="hljs"><code><span class="hljs-title function_">add_filter</span>(
+	<span class="hljs-string">&#039;alpaca_rest_response_object&#039;</span>,
+	<span class="hljs-keyword">static</span> <span class="hljs-keyword">function</span> ( <span class="hljs-variable">$response</span>, <span class="hljs-variable">$action_type</span>, <span class="hljs-variable">$data</span>, <span class="hljs-variable">$status</span> ) {
+		<span class="hljs-keyword">if</span> ( <span class="hljs-variable">$status</span> <span class="hljs-punctuation">&gt;=</span> <span class="hljs-number">200</span> <span class="hljs-punctuation">&amp;&amp;</span> <span class="hljs-variable">$status</span> <span class="hljs-punctuation">&lt;</span> <span class="hljs-number">300</span> ) {
+			<span class="hljs-variable">$response</span><span class="hljs-punctuation">-&gt;</span><span class="hljs-title function_">header</span>( <span class="hljs-string">&#039;X-Alpaca-Handled&#039;</span>, <span class="hljs-string">&#039;1&#039;</span> );
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-variable">$response</span>;
+	},
+	<span class="hljs-number">10</span>,
+	<span class="hljs-number">4</span>
+);
+</code></pre>
+<h3 id="rest-api-rest-extension-hooks-rest-root-filter" class="docmd-heading"><a href="#rest-api-rest-extension-hooks-rest-root-filter" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>REST Root Filter</h3>
+<p><code>alpaca_rest_api_root</code></p>
+<p>Filter the REST API root used by localized JavaScript settings.</p>
+<p>Example: point Alpaca Issue Tracker REST requests at a custom REST root.</p>
+<pre class="hljs"><code><span class="hljs-title function_">add_filter</span>(
+	<span class="hljs-string">&#039;alpaca_rest_api_root&#039;</span>,
+	<span class="hljs-keyword">static</span> <span class="hljs-keyword">function</span> ( <span class="hljs-variable">$root</span> ) {
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">trailingslashit</span>( <span class="hljs-title function_">home_url</span>( <span class="hljs-string">&#039;/wp-json/&#039;</span> ) );
+	}
+);
+</code></pre>
+<h3 id="rest-api-rest-extension-hooks-private-comment-visibility-filters" class="docmd-heading"><a href="#rest-api-rest-extension-hooks-private-comment-visibility-filters" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Private Comment Visibility Filters</h3>
+<p><code>alpaca_private_comments_rest_visibility_param</code> customizes the request parameter used to opt into hidden issue comments.</p>
+<p><code>alpaca_private_comments_user_can_view_type</code> customizes who can view private issue comments by comment type.</p>
+<p>Example: restrict hidden issue comments to administrators.</p>
+<pre class="hljs"><code><span class="hljs-title function_">add_filter</span>(
+	<span class="hljs-string">&#039;alpaca_private_comments_user_can_view_type&#039;</span>,
+	<span class="hljs-keyword">static</span> <span class="hljs-keyword">function</span> ( <span class="hljs-variable">$allowed</span>, <span class="hljs-variable">$comment_type</span> ) {
+		<span class="hljs-keyword">if</span> ( <span class="hljs-string">&#039;issuecomment&#039;</span> <span class="hljs-punctuation">===</span> <span class="hljs-variable">$comment_type</span> ) {
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">current_user_can</span>( <span class="hljs-string">&#039;manage_options&#039;</span> );
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-variable">$allowed</span>;
+	},
+	<span class="hljs-number">10</span>,
+	<span class="hljs-number">2</span>
+);
+</code></pre>
+<h3 id="rest-api-rest-extension-hooks-rest-lifecycle-actions" class="docmd-heading"><a href="#rest-api-rest-extension-hooks-rest-lifecycle-actions" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>REST Lifecycle Actions</h3>
+<ul>
+<li><code>alpaca_rest_response</code> fires for every wrapped Alpaca Issue Tracker REST response.</li>
+<li><code>alpaca_rest_{action_type}</code> fires for successful responses with an action type.</li>
+<li><code>alpaca_rest_error_{action_type}</code> fires for error responses with an action type.</li>
+</ul>
+
+                
+                  <div class="page-navigation">
+                    
+                      <a href="../../developer/icon-system/" class="prev-page">
+                        
+<svg class="lucide-icon icon-arrow-left page-nav-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-arrow-left"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" />
+</svg>
+
+                        <span><small>previous</small><strong>
+                            Icon System
+                          </strong></span>
+                      </a>
+                    
+                    
+                      <a href="../../developer/settings-options/" class="next-page">
+                        <span><small>next</small>
+                          <strong>
+                            Settings And Options
+                          </strong></span>
+                        
+<svg class="lucide-icon icon-arrow-right page-nav-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-arrow-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg>
+
+                      </a>
+                    
+                  </div>
+                
+              </div>
+              <div class="toc-sidebar">
+                
+
+
+  <div class="toc-container">
+    <h2 class="toc-title">onThisPage<span class="mobile-view toc-menu-button float-right">
+<svg class="lucide-icon icon-chevron-down " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-down"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m6 9 6 6 6-6" />
+</svg>
+</span></h2>
+    <ul class="toc-list">
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-method-names" class="toc-link">Method Names</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-permissions" class="toc-link">Permissions</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-issue-endpoints" class="toc-link">Issue Endpoints</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-issue-endpoints-create-issue" class="toc-link">Create Issue</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-issue-endpoints-update-issue" class="toc-link">Update Issue</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-issue-endpoints-create-subissue" class="toc-link">Create Subissue</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-issue-endpoints-deleted-items" class="toc-link">Deleted Items</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-board-and-status-endpoints" class="toc-link">Board And Status Endpoints</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-board-and-status-endpoints-update-board" class="toc-link">Update Board</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-board-and-status-endpoints-update-status" class="toc-link">Update Status</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-users-labels-and-watchlist-endpoints" class="toc-link">Users, Labels, And Watchlist Endpoints</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-users-labels-and-watchlist-endpoints-create-or-update-label" class="toc-link">Create Or Update Label</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-users-labels-and-watchlist-endpoints-update-watchlist" class="toc-link">Update Watchlist</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-notification-endpoints" class="toc-link">Notification Endpoints</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-notification-endpoints-notification-inbox-query-parameters" class="toc-link">Notification Inbox Query Parameters</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-notification-endpoints-mark-inbox-items" class="toc-link">Mark Inbox Items</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-notification-endpoints-notification-preferences" class="toc-link">Notification Preferences</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-notification-endpoints-notification-templates" class="toc-link">Notification Templates</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-attachment-endpoints" class="toc-link">Attachment Endpoints</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-attachment-endpoints-upload-attachment" class="toc-link">Upload Attachment</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-attachment-endpoints-delete-attachment" class="toc-link">Delete Attachment</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-presence-capture-and-proxy-endpoints" class="toc-link">Presence, Capture, And Proxy Endpoints</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-presence-capture-and-proxy-endpoints-image-proxy" class="toc-link">Image Proxy</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-wordpress-core-comment-routes" class="toc-link">WordPress Core Comment Routes</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#rest-api-rest-extension-hooks" class="toc-link">REST Extension Hooks</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-rest-extension-hooks-response-object-filter" class="toc-link">Response Object Filter</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-rest-extension-hooks-rest-root-filter" class="toc-link">REST Root Filter</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-rest-extension-hooks-private-comment-visibility-filters" class="toc-link">Private Comment Visibility Filters</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#rest-api-rest-extension-hooks-rest-lifecycle-actions" class="toc-link">REST Lifecycle Actions</a>
+        </li>
+      
+    </ul>
+  </div>
+
+              </div>
+            </div>
+            <div class="page-footer-actions">
+              
+              
+              <span class="git-spacer"></span>
+              
+            </div>
+          </main>
+          
+
+
+<footer class="page-footer">
+  <div class="footer-content">
+    <div class="user-footer">© 2026 Rareview®.</div>
+    
+      <div class="branding-footer">
+        builtWith <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg> <a href="https://docmd.io" target="_blank" rel="noopener">docmd.</a>
+      </div>
+    
+  </div>
+</footer>
+
+        </div>
+      </div>
+      
+      <script src="../../assets/js/docmd-main.js?v=mpfotgsn"></script>
+      
+      <script src="../../assets/js/docmd-git.js?v=mpfotgsn"></script>
+      <script src="../../assets/js/docmd-image-lightbox.js?v=mpfotgsn" ></script>
+<script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js" ></script>
+<script src="../../assets/js/docmd-search.js?v=mpfotgsn" ></script>
+<script src="../../assets/js/init-mermaid.js?v=mpfotgsn" type="module"></script>
+<script src="../../assets/js/docmd-git.js?v=mpfotgsn" type="module"></script>
+
+  <!-- Search Modal (Injected by @docmd/plugin-search) -->
+  <div id="docmd-search-modal" class="docmd-search-modal" style="display: none;"
+       data-search-placeholder="Search documentation..."
+       data-search-no-results="No results found."
+       data-search-error="Failed to load search index."
+       data-search-initial="Type to start searching..."
+       data-search-navigate="to navigate"
+       data-search-escape="to close">
+      <div class="docmd-search-box">
+          <div class="docmd-search-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon icon-search"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+              <input type="text" id="docmd-search-input" placeholder="Search documentation..." autocomplete="off" spellcheck="false">
+              <button onclick="window.closeDocmdSearch()" class="docmd-search-close" aria-label="Close search">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon icon-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              </button>
+          </div>
+          <div id="docmd-search-results" class="docmd-search-results"></div>
+          <div class="docmd-search-footer">
+              <span><kbd class="docmd-kbd">↑</kbd> <kbd class="docmd-kbd">↓</kbd> to navigate</span>
+              <span><kbd class="docmd-kbd">ESC</kbd> to close</span>
+          </div>
+      </div>
+  </div>
+
+    <script>
+      (function() {
+        var searchDebounceTimer;
+
+        document.addEventListener('click', function(e) {
+          var link = e.target.closest('a');
+          if (!link || !window.gtag) return;
+          
+          var url = link.href;
+          var hostname = window.location.hostname;
+          var isExternal = link.hostname && link.hostname !== hostname;
+          var isDownload = link.hasAttribute('download') || url.match(/\.(pdf|zip|tar|gz|exe|pkg)$/i);
+          
+          if (isExternal) {
+            gtag('event', 'click_external', { 'url': url, 'link_text': link.innerText.trim() });
+          } else if (isDownload) {
+            gtag('event', 'download', { 'file_name': url.split('/').pop(), 'url': url });
+          }
+
+          // TOC tracking
+          if (link.classList.contains('toc-link')) {
+            gtag('event', 'toc_click', { 'target_id': link.getAttribute('href'), 'title': link.innerText.trim() });
+          }
+
+          // Permalink tracking
+          if (link.classList.contains('heading-anchor')) {
+            gtag('event', 'permalink_click', { 'url': url });
+          }
+        });
+
+        
+        // Search Keyword Tracking
+        document.addEventListener('input', function(e) {
+          if (e.target.id === 'docmd-search-input' && window.gtag) {
+            var query = e.target.value.trim();
+            if (query.length < 3) return;
+            
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(function() {
+              gtag('event', 'search', { 'search_term': query });
+            }, 1000);
+          }
+        });
+        
+      })();
+    </script>
+
+<script>window.__git_config={"repo":null,"branch":"main","editLink":false,"lastUpdated":true,"commitHistory":true,"maxCommits":5,"dateFormat":"relative"};window.__git_i18n={"lastUpdated":"Last updated","recentCommits":"Recent commits","viewCommitHistory":"View commit history","editOnGitHub":"Edit on GitHub","editOnGitLab":"Edit on GitLab","editOnBitbucket":"Edit on Bitbucket","editThisPage":"Edit this page","justNow":"just now","minutesAgo":"{n}m ago","hoursAgo":"{n}h ago","daysAgo":"{n}d ago"}</script>
+      
+  </body>
+</html>

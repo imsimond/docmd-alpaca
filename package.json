@@ -1,0 +1,14 @@
+{
+  "name": "my-docs",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "docmd dev --port 6997",
+    "build": "docmd build",
+    "preview": "npx serve site -l 6998"
+  },
+  "dependencies": {
+    "@docmd/core": "^0.8.4"
+  }
+}
