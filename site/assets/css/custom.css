@@ -1,7 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+
 :root {
   --sidebar-bg: transparent;
   --sidebar-group-bg: transparent;
   --sidebar-width: 350px;
+
+  --font-family-sans:
+    "Bricolage Grotesque", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   .sidebar nav .submenu {
     background-color: transparent;
