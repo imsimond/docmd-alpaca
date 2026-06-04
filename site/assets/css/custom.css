@@ -1,6 +1,55 @@
-/*!
- * docmd (v0.8.4)
- * Copyright (c) 2025-present docmd.io
- * License: MIT
- */
-:root{--sidebar-bg: transparent;--sidebar-group-bg: transparent;--sidebar-width: 350px;.sidebar nav .submenu{background-color:transparent;border-color:transparent}.sidebar nav li a.active{background-color:transparent;border-color:transparent}.sidebar nav li a,.sidebar nav li .nav-label{font-size:1em}.sidebar-header{text-align:left;padding-left:var(--space-3);h1{font-size:1.25em;line-height:2em;a{display:inline-flex;align-items:center;color:inherit}a:before{content:"";flex-shrink:0;width:1.5em;height:1.5em;background-image:url(../images/alpaca.svg);background-size:contain;background-repeat:no-repeat;margin-right:.5em}}}}.toc-title{display:none}html[data-theme=dark]{--sidebar-bg: transparent;--sidebar-group-bg: transparent;.sidebar nav .submenu{background-color:transparent;border-color:transparent}}
+:root {
+  --sidebar-bg: transparent;
+  --sidebar-group-bg: transparent;
+  --sidebar-width: 350px;
+
+  .sidebar nav .submenu {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .sidebar nav li a.active {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .sidebar nav li a,
+  .sidebar nav li .nav-label {
+    font-size: 1em;
+  }
+  .sidebar-header {
+    text-align: left;
+    padding-left: var(--space-3);
+    h1 {
+      font-size: 1.25em;
+      line-height: 2em;
+      a {
+        display: inline-flex;
+        align-items: center;
+        color: inherit;
+      }
+      a::before {
+        content: "";
+        flex-shrink: 0;
+        width: 1.5em;
+        height: 1.5em;
+        background-image: url("../images/alpaca.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 0.5em;
+      }
+    }
+  }
+}
+
+.toc-title {
+  display: none;
+}
+
+:root[data-theme="dark"] {
+  --sidebar-bg: transparent;
+  --sidebar-group-bg: transparent;
+  --link-color: #a1daca;
+  .sidebar nav .submenu {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}

@@ -44,9 +44,10 @@
   display: none;
 }
 
-html[data-theme="dark"] {
+:root[data-theme="dark"] {
   --sidebar-bg: transparent;
   --sidebar-group-bg: transparent;
+  --link-color: #a1daca;
   .sidebar nav .submenu {
     background-color: transparent;
     border-color: transparent;
