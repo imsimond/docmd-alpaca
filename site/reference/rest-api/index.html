@@ -86,13 +86,13 @@
     <title>
       REST API Hooks : Alpaca Issue Tracker
     </title>
-    <link id="site-favicon" rel="icon" href="../../assets/images/alpaca-face.svg?v=mpzwdmsw">
-    <link rel="stylesheet" href="../../assets/css/docmd-main.css?v=mpzwdmsw">
+    <link id="site-favicon" rel="icon" href="../../assets/images/alpaca-face.svg?v=mq0pu79l">
+    <link rel="stylesheet" href="../../assets/css/docmd-main.css?v=mq0pu79l">
     
-    <link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mpzwdmsw">
+    <link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mq0pu79l">
     
-    <link rel="stylesheet" href="../../assets/css/docmd-highlight-light.css?v=mpzwdmsw" id="hljs-light" >
-    <link rel="stylesheet" href="../../assets/css/docmd-highlight-dark.css?v=mpzwdmsw" id="hljs-dark" disabled>
+    <link rel="stylesheet" href="../../assets/css/docmd-highlight-light.css?v=mq0pu79l" id="hljs-light" >
+    <link rel="stylesheet" href="../../assets/css/docmd-highlight-dark.css?v=mq0pu79l" id="hljs-dark" disabled>
     
     
 <meta name="description" content="Documentation for Alpaca Issue Tracker, a WordPress-native issue tracker for bug reports, QA feedback, and project work inside wp-admin.">
@@ -107,11 +107,11 @@
 
 
 
-<link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mpzwdmsw" >
-<link rel="stylesheet" href="../../assets/css/docmd-openapi.css?v=mpzwdmsw" >
+<link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mq0pu79l" >
+<link rel="stylesheet" href="../../assets/css/docmd-openapi.css?v=mq0pu79l" >
 
     
-      <link rel="stylesheet" href="../../assets/css/custom.css?v=mpzwdmsw">
+      <link rel="stylesheet" href="../../assets/css/custom.css?v=mq0pu79l">
     
     <script>/**
  * --------------------------------------------------------------------
@@ -1034,8 +1034,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/api/utilities/helpers.php:26</code>.</p>
-<h3 id="rest-api-hooks-shared-response-hook-alpacarestactiontype" class="docmd-heading"><a href="#rest-api-hooks-shared-response-hook-alpacarestactiontype" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>alpaca_rest_{$action_type}</code></h3>
+</div><h3 id="rest-api-hooks-shared-response-hook-alpacarestactiontype" class="docmd-heading"><a href="#rest-api-hooks-shared-response-hook-alpacarestactiontype" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>alpaca_rest_{$action_type}</code></h3>
 <p><strong>Type:</strong> Action.</p>
 <p><strong>Purpose:</strong> Fires for successful REST responses created through <code>alpaca_rest_response()</code> when the HTTP status code is in the <code>2xx</code> range.</p>
 <p><strong>Parameters</strong></p>
@@ -1060,8 +1059,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/api/utilities/helpers.php:30</code>.</p>
-<p><strong>Notes:</strong> The final action name depends on the <code>$action_type</code> string passed into <code>alpaca_rest_response()</code>. For example, an action type of <code>submit</code> produces <code>alpaca_rest_submit</code>.</p>
+</div><p><strong>Notes:</strong> The final action name depends on the <code>$action_type</code> string passed into <code>alpaca_rest_response()</code>. For example, an action type of <code>submit</code> produces <code>alpaca_rest_submit</code>.</p>
 <h3 id="rest-api-hooks-shared-response-hook-alpacaresterroractiontype" class="docmd-heading"><a href="#rest-api-hooks-shared-response-hook-alpacaresterroractiontype" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>alpaca_rest_error_{$action_type}</code></h3>
 <p><strong>Type:</strong> Action.</p>
 <p><strong>Purpose:</strong> Fires for non-<code>2xx</code> REST responses created through <code>alpaca_rest_response()</code>.</p>
@@ -1087,8 +1085,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/api/utilities/helpers.php:32</code>.</p>
-<p><strong>Notes:</strong> The final action name depends on the <code>$action_type</code> string passed into <code>alpaca_rest_response()</code>. For example, an action type of <code>submit</code> can produce <code>alpaca_rest_error_submit</code> for an error response.</p>
+</div><p><strong>Notes:</strong> The final action name depends on the <code>$action_type</code> string passed into <code>alpaca_rest_response()</code>. For example, an action type of <code>submit</code> can produce <code>alpaca_rest_error_submit</code> for an error response.</p>
 <h2 id="rest-api-hooks-response-object-filter" class="docmd-heading"><a href="#rest-api-hooks-response-object-filter" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Response Object Filter</h2>
 <h3 id="rest-api-hooks-response-object-filter-alpacarestresponseobject" class="docmd-heading"><a href="#rest-api-hooks-response-object-filter-alpacarestresponseobject" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>alpaca_rest_response_object</code></h3>
 <p><strong>Type:</strong> Filter.</p>
@@ -1125,8 +1122,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/api/utilities/helpers.php:38-44</code>.</p>
-<h2 id="rest-api-hooks-rest-root-resolution" class="docmd-heading"><a href="#rest-api-hooks-rest-root-resolution" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>REST Root Resolution</h2>
+</div><h2 id="rest-api-hooks-rest-root-resolution" class="docmd-heading"><a href="#rest-api-hooks-rest-root-resolution" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>REST Root Resolution</h2>
 <h3 id="rest-api-hooks-rest-root-resolution-alpacarestapiroot" class="docmd-heading"><a href="#rest-api-hooks-rest-root-resolution-alpacarestapiroot" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>alpaca_rest_api_root</code></h3>
 <p><strong>Type:</strong> Filter.</p>
 <p><strong>Purpose:</strong> Overrides the REST API root URL Alpaca injects into localized front-end settings.</p>
@@ -1152,8 +1148,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/api/utilities/rest-root.php:103-110</code>.</p>
-
+</div>
                 
                   <div class="page-navigation">
                     
@@ -1271,14 +1266,14 @@
         </div>
       </div>
       
-      <script src="../../assets/js/docmd-main.js?v=mpzwdmsw"></script>
+      <script src="../../assets/js/docmd-main.js?v=mq0pu79l"></script>
       
-      <script src="../../assets/js/docmd-git.js?v=mpzwdmsw"></script>
-      <script src="../../assets/js/docmd-image-lightbox.js?v=mpzwdmsw" ></script>
+      <script src="../../assets/js/docmd-git.js?v=mq0pu79l"></script>
+      <script src="../../assets/js/docmd-image-lightbox.js?v=mq0pu79l" ></script>
 <script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js" ></script>
-<script src="../../assets/js/docmd-search.js?v=mpzwdmsw" ></script>
-<script src="../../assets/js/init-mermaid.js?v=mpzwdmsw" type="module"></script>
-<script src="../../assets/js/docmd-git.js?v=mpzwdmsw" type="module"></script>
+<script src="../../assets/js/docmd-search.js?v=mq0pu79l" ></script>
+<script src="../../assets/js/init-mermaid.js?v=mq0pu79l" type="module"></script>
+<script src="../../assets/js/docmd-git.js?v=mq0pu79l" type="module"></script>
 
   <!-- Search Modal (Injected by @docmd/plugin-search) -->
   <div id="docmd-search-modal" class="docmd-search-modal" style="display: none;"

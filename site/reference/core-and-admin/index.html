@@ -86,13 +86,13 @@
     <title>
       Core And Admin Hooks : Alpaca Issue Tracker
     </title>
-    <link id="site-favicon" rel="icon" href="../../assets/images/alpaca-face.svg?v=mpzwdmsw">
-    <link rel="stylesheet" href="../../assets/css/docmd-main.css?v=mpzwdmsw">
+    <link id="site-favicon" rel="icon" href="../../assets/images/alpaca-face.svg?v=mq0pu79l">
+    <link rel="stylesheet" href="../../assets/css/docmd-main.css?v=mq0pu79l">
     
-    <link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mpzwdmsw">
+    <link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mq0pu79l">
     
-    <link rel="stylesheet" href="../../assets/css/docmd-highlight-light.css?v=mpzwdmsw" id="hljs-light" >
-    <link rel="stylesheet" href="../../assets/css/docmd-highlight-dark.css?v=mpzwdmsw" id="hljs-dark" disabled>
+    <link rel="stylesheet" href="../../assets/css/docmd-highlight-light.css?v=mq0pu79l" id="hljs-light" >
+    <link rel="stylesheet" href="../../assets/css/docmd-highlight-dark.css?v=mq0pu79l" id="hljs-dark" disabled>
     
     
 <meta name="description" content="Documentation for Alpaca Issue Tracker, a WordPress-native issue tracker for bug reports, QA feedback, and project work inside wp-admin.">
@@ -107,11 +107,11 @@
 
 
 
-<link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mpzwdmsw" >
-<link rel="stylesheet" href="../../assets/css/docmd-openapi.css?v=mpzwdmsw" >
+<link rel="stylesheet" href="../../assets/css/docmd-git.css?v=mq0pu79l" >
+<link rel="stylesheet" href="../../assets/css/docmd-openapi.css?v=mq0pu79l" >
 
     
-      <link rel="stylesheet" href="../../assets/css/custom.css?v=mpzwdmsw">
+      <link rel="stylesheet" href="../../assets/css/custom.css?v=mq0pu79l">
     
     <script>/**
  * --------------------------------------------------------------------
@@ -1007,7 +1007,6 @@
 <p><strong>Type:</strong> Action.</p>
 <p><strong>Purpose:</strong> Runs when Alpaca finishes its own initialization so integrations can register follow-up behavior after the plugin is loaded.</p>
 <p><strong>Parameters:</strong> This action does not pass any parameters.</p>
-<p><strong>Source:</strong> <code>includes/class-alpaca.php:316</code>.</p>
 <p><strong>Example</strong></p>
 <pre class="hljs"><code><span class="hljs-title function_">add_action</span>(
 	<span class="hljs-string">&#039;alpaca_init&#039;</span>,
@@ -1047,8 +1046,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/class-helpers.php:121</code>.</p>
-<p><strong>Example</strong></p>
+</div><p><strong>Example</strong></p>
 <pre class="hljs"><code><span class="hljs-title function_">add_filter</span>(
 	<span class="hljs-string">&#039;alpaca_user_can&#039;</span>,
 	<span class="hljs-keyword">static</span> <span class="hljs-keyword">function</span> ( <span class="hljs-variable">$allowed</span>, <span class="hljs-variable">$action</span>, <span class="hljs-variable">$args</span> ) {
@@ -1083,8 +1081,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/core/board.php:312</code>.</p>
-<p><strong>Example</strong></p>
+</div><p><strong>Example</strong></p>
 <pre class="hljs"><code><span class="hljs-title function_">add_filter</span>(
 	<span class="hljs-string">&#039;alpaca_board_statuses&#039;</span>,
 	<span class="hljs-keyword">static</span> <span class="hljs-keyword">function</span> ( <span class="hljs-variable">$statuses</span> ) {
@@ -1124,8 +1121,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/api/endpoints/issues.php:123</code>.</p>
-<p><strong>Example</strong></p>
+</div><p><strong>Example</strong></p>
 <pre class="hljs"><code><span class="hljs-title function_">add_filter</span>(
 	<span class="hljs-string">&#039;alpaca_default_status&#039;</span>,
 	<span class="hljs-keyword">static</span> <span class="hljs-keyword">function</span> ( <span class="hljs-variable">$default_status</span>, <span class="hljs-variable">$statuses</span> ) {
@@ -1146,7 +1142,6 @@
 <p><strong>Type:</strong> Action.</p>
 <p><strong>Purpose:</strong> Renders extra server-side content inside the Configure screen below the React-managed settings interface.</p>
 <p><strong>Parameters:</strong> This action does not pass any parameters.</p>
-<p><strong>Source:</strong> <code>includes/admin/admin-screens.php:81</code>.</p>
 <p><strong>Example</strong></p>
 <pre class="hljs"><code><span class="hljs-title function_">add_action</span>(
 	<span class="hljs-string">&#039;alpaca_settings_plugin&#039;</span>,
@@ -1181,8 +1176,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Source:</strong> <code>includes/utilities/functions.php:721</code>.</p>
-<h2 id="core-and-admin-hooks-core-wordpress-filters-used-by-alpaca" class="docmd-heading"><a href="#core-and-admin-hooks-core-wordpress-filters-used-by-alpaca" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Core WordPress Filters Used By Alpaca</h2>
+</div><h2 id="core-and-admin-hooks-core-wordpress-filters-used-by-alpaca" class="docmd-heading"><a href="#core-and-admin-hooks-core-wordpress-filters-used-by-alpaca" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Core WordPress Filters Used By Alpaca</h2>
 <p>The hooks below are not defined by Alpaca, but Alpaca explicitly calls them and they directly affect plugin behavior.</p>
 <h3 id="core-and-admin-hooks-core-wordpress-filters-used-by-alpaca-pluginlocale" class="docmd-heading"><a href="#core-and-admin-hooks-core-wordpress-filters-used-by-alpaca-pluginlocale" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>plugin_locale</code></h3>
 <p><strong>Type:</strong> Filter.</p>
@@ -1209,12 +1203,7 @@
 </tr>
 </tbody>
 </table>
-</div><p><strong>Sources</strong></p>
-<ul>
-<li><code>includes/class-alpaca.php:174</code></li>
-<li><code>includes/class-register.php:126</code></li>
-</ul>
-
+</div>
                 
                   <div class="page-navigation">
                     
@@ -1373,14 +1362,14 @@
         </div>
       </div>
       
-      <script src="../../assets/js/docmd-main.js?v=mpzwdmsw"></script>
+      <script src="../../assets/js/docmd-main.js?v=mq0pu79l"></script>
       
-      <script src="../../assets/js/docmd-git.js?v=mpzwdmsw"></script>
-      <script src="../../assets/js/docmd-image-lightbox.js?v=mpzwdmsw" ></script>
+      <script src="../../assets/js/docmd-git.js?v=mq0pu79l"></script>
+      <script src="../../assets/js/docmd-image-lightbox.js?v=mq0pu79l" ></script>
 <script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js" ></script>
-<script src="../../assets/js/docmd-search.js?v=mpzwdmsw" ></script>
-<script src="../../assets/js/init-mermaid.js?v=mpzwdmsw" type="module"></script>
-<script src="../../assets/js/docmd-git.js?v=mpzwdmsw" type="module"></script>
+<script src="../../assets/js/docmd-search.js?v=mq0pu79l" ></script>
+<script src="../../assets/js/init-mermaid.js?v=mq0pu79l" type="module"></script>
+<script src="../../assets/js/docmd-git.js?v=mq0pu79l" type="module"></script>
 
   <!-- Search Modal (Injected by @docmd/plugin-search) -->
   <div id="docmd-search-modal" class="docmd-search-modal" style="display: none;"
